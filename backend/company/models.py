@@ -15,29 +15,6 @@ class Employee(models.Model):
     pan_card = models.URLField(max_length=500, blank = True)
     is_verified = models.BooleanField(blank=True, default=False)
 
-class Complaint(models.Model):
-    issued_by = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="issued_by")
-    issued_for = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name="issued_for")
-    is_resolved = models.BooleanField(blank=True, default=False)
-    text = models.CharField(max_length=300)
-    hr = models.ForeignKey(HR, on_delete=models.CASCADE, related_name="hr_complaint")
-
-class Attendance(models.Model):
-    date = models.DateField(models.Model)
-    start_time = models.TimeField(blank=True, null=True)
-    end_time = models.TimeField(blank=True, null=True)
-    hours = models.IntegerField(blank=True, null=True)
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-    is_late = models.BooleanField(blank=True, default=False) 
-    overtime_hours = models.IntegerField(blank=True, null=True)
-
-
-class Review(models.Model):
-    text = models.CharField(max_length= 300)
-    rating = models.DecimalField(max_digits=3, decimal_places=1, blank=True, default=0)
-    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
-
-
 class Flag(models.Model):
     punctuality = models.DecimalField(max_digits=3, decimal_places=1, blank=True, default=0)
     sociability = models.DecimalField(max_digits=3, decimal_places=1, blank=True, default=0)
