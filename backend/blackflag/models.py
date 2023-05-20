@@ -5,9 +5,8 @@ from company.models import *
 
 class BlackFlag(models.Model):
     emp = models.ForeignKey(Employee, on_delete=models.SET_NULL, blank=True, null=True)
-    image_embeddings = models.CharField(max_length=1000)
+    image_embeddings = models.CharField(max_length=3000)
     hr = models.ForeignKey(HR, on_delete=models.SET_NULL, blank=True, null = True)
-    text = models.CharField(max_length=200, blank=True)
 
 
 class Reason(models.Model):

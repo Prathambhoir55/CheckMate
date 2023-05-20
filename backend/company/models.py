@@ -16,6 +16,7 @@ class Employee(models.Model):
     aadhar_card = models.URLField(max_length=500, blank=True)
     pan_card = models.URLField(max_length=500, blank=True)
     is_verified = models.BooleanField(blank=True, default=False)
+    is_blackflag = models.BooleanField(blank=True, default=False)
 
 class Flag(models.Model):
     punctuality = models.DecimalField(max_digits=3, decimal_places=1, blank=True, default=0)

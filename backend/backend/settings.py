@@ -136,9 +136,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = '/home/corswarriors/corswarriors.pythonanywhere.com/static/'    #/path/to/static_root
+STATIC_ROOT = 'static/'    #/path/to/static_root
 MEDIA_URL = 'media/'
-MEDIA_ROOT = '/home/corswarriors/corswarriors.pythonanywhere.com/media/'    #/path/to/media_root
+MEDIA_ROOT = 'media/'    #/path/to/media_root
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

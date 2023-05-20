@@ -3,6 +3,7 @@ from rest_framework.authtoken.models import Token
 from .serializers import *
 from rest_framework.response import Response
 from rest_framework import status,permissions
+from blackflag.models import *
 # Create your views here.
 
 class HRRegisterAPI(GenericAPIView):
@@ -86,11 +87,20 @@ class EmpGetAPI(GenericAPIView):
 
     def get(self, request):
         try:
-            user = Employee.objects.get(id = request.user.id)
+            user = Employee.objects.get(user = request.user.id)
             serializer = self.serializer_class(user)
+            if serializer.data['is_blackflag']:
+                blackflag = BlackFlag.objects.get(emp = user)
+                reasons = Reason.objects.filter(flag = blackflag)
+                reasons_list = []
+                for item in reasons:
+                    reasons_list.append(item.text)
+                serialized_data = serializer.data
+                serialized_data['reasons'] = reasons_list
+            return Response(serialized_data)
         except:
             return Response("User not found", status= status.HTTP_404_NOT_FOUND)
-        return Response(serializer.data)
+        
 
 class EmpPutAPI(GenericAPIView):
     serializer_class = EmployeePutSerializer
@@ -115,7 +125,15 @@ class HRGetEmployee(GenericAPIView):
         try:
             user = Employee.objects.get(user__phone_no = pk)
             serializer = self.serializer_class(user)
-            return Response(serializer.data)
+            if serializer.data['is_blackflag']:
+                blackflag = BlackFlag.objects.get(emp = user)
+                reasons = Reason.objects.filter(flag = blackflag)
+                reasons_list = []
+                for item in reasons:
+                    reasons_list.append(item.text)
+                serialized_data = serializer.data
+                serialized_data['reasons'] = reasons_list
+            return Response(serialized_data)
         except:
             return Response("Account not found")
     
