@@ -11,9 +11,4 @@ urlpatterns = [
     path('all-emp/', views.AllEmployeeListAPI.as_view(), name = 'get-all-emp'),
     path('hr-get-emp/<int:pk>', views.HRGetEmployee.as_view(), name = 'hr-get-emp'),
     path('emp-update/', views.EmpPutAPI.as_view(), name = 'emp-update'),
-    path('my-comp/', views.MyComplaint.as_view(), name = 'my-comp'),
-    path('emp-comp/', views.EmployeeComplaint.as_view(), name = 'emp-comp'),
-    path('hr-comp/', views.HRComplaint.as_view(), name = 'hr-comp'),
-    path('register-comp/', views.RegisterComplaint.as_view(), name = 'register-comp'),
-    path('details-comp/<int:pk>', views.CombineListView.as_view(), name = 'details-comp'),
 ]

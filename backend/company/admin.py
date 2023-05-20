@@ -4,6 +4,4 @@ from .models import *
 
 admin.site.register(HR)
 admin.site.register(Employee)
-admin.site.register(Complaint)
-admin.site.register(Review)
 admin.site.register(Flag)

@@ -9,10 +9,12 @@ class Employee(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     arrival_time = models.TimeField(blank=True, null=True)
     leaving_time = models.TimeField(blank=True, null=True)
-    hr = models.ForeignKey(HR, on_delete=models.SET_NULL, blank=True, null = True)
+    position = models.CharField(max_length= 200, blank=True, null=True)
+    salary = models.IntegerField(blank=True, null=True)
+    hr = models.ForeignKey(HR, on_delete=models.SET_NULL, blank=True, null=True)
     photo = models.URLField(max_length=500, blank=True)
     aadhar_card = models.URLField(max_length=500, blank=True)
-    pan_card = models.URLField(max_length=500, blank = True)
+    pan_card = models.URLField(max_length=500, blank=True)
     is_verified = models.BooleanField(blank=True, default=False)
 
 class Flag(models.Model):

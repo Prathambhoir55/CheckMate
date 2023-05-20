@@ -25,7 +25,7 @@ class EmployeeRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Employee
-        fields = ['user', 'photo']
+        fields = ['user', 'photo', 'aadhar_card', 'pan_card']
 
     def create(self, validated_data):
         user_data = validated_data.pop('user')
@@ -60,16 +60,20 @@ class EmployeeGetSerializer(serializers.ModelSerializer):
     
 
 class EmployeePutSerializer(serializers.ModelSerializer):
-    # phone_no = serializers.CharField(write_only=True)
-    # hr = serializers.IntegerField(read_only=True)
-    user = UserRegisterSerializer()
+    phone_no = serializers.CharField(write_only=True)
+    hr = serializers.IntegerField(read_only=True)
+    # user = serializers.IntegerField(read_only = True)
     class Meta:
         model = Employee
-        fields = ['hr','arrival_time', 'leaving_time','aadhar_card', 'pan_card', 'is_verified', 'photo','user']
+        fields = ['hr','arrival_time', 'leaving_time','position', 'salary','aadhar_card', 'pan_card', 'is_verified', 'photo','user', 'phone_no']
 
     def update(self,validated_data, hr):
         instance = Employee.objects.get(user__phone_no = validated_data['phone_no'])
         instance.hr = hr
+        instance.position = validated_data['position']
+        instance.salary = validated_data['salary']
+        instance.arrival_time = validated_data['arrival_time']
+        instance.leaving_time = validated_data['leaving_time']
         instance.save()
         return instance
     

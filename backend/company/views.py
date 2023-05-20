@@ -111,8 +111,13 @@ class HRGetEmployee(GenericAPIView):
     serializer_class = EmployeeGetSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self, request, pk):
-        # try:
-        user = Employee.objects.get(user__phone_no = pk)
-        serializer = self.serializer_class(user)
-        return Response(serializer.data)
+    def get(self, request, pk):
+        try:
+            user = Employee.objects.get(user__phone_no = pk)
+            serializer = self.serializer_class(user)
+            return Response(serializer.data)
+        except:
+            return Response("Account not found")
+    
+        
+        
