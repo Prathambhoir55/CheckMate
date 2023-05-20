@@ -1,0 +1,17 @@
+# cache and DB related
+*.pyc
+_pycache_/
+db.sqlite3
+migrations/
+
+# Environments
+virtualenv/
+*.env
+env/
+venv/
+ENV/
+
+# other files
+media/
+.ipynb_checkpoints/
+*.json
