@@ -120,6 +120,7 @@ class EmpPutAPI(GenericAPIView):
 class HRGetEmployee(GenericAPIView):
     serializer_class = EmployeeGetSerializer
     permission_classes = [permissions.IsAuthenticated]
+    queryset = Employee.objects.all()
 
     def get(self, request, pk):
         try:
